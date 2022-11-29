@@ -1,0 +1,23 @@
+﻿@page
+@model ProgPoe3._1.Pages.LoginModel
+@{
+    Layout = "_LayoutLogin";
+}
+
+<div class="login-page">
+    <div class="form">
+        <form class="register-form">
+            <input type="text" placeholder="name" />
+            <input type="password" placeholder="password" />
+            <input type="text" placeholder="email address" />
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <form class="login-form" method="post" >
+            <input type="text" placeholder="Username" name="txtuserID"/>
+            <input type="password" placeholder="Password" name="txtPassword"/>
+            <button type="submit" >login</button>
+            <p class="message">Not registered? <a href="/SignUp">Create an account</a></p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@page
+@model ProgPoe3._1.Pages.ModulesModel
+@{
+    Layout = "_Layout";
+}
+<h2>All Modules</h2>
+
+<table class="table">
+    
+        <thead>
+            <tr>
+                <td>Code</td>
+                <td>Project Name</td>
+                <td>Weekly hrs</td>
+                <td>Semester hrs</td>
+                <td>Remaining Weekly hrs</td>
+                <td>Remaining Semester hrs</td>
+                <td>Number of credits</td>
+                <td>Class hrs</td>
+                <td>Start Date</td>
+                <td>Weeks</td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var pr in Model.ModulesList)
+            {
+            <tr>
+                <td>@pr.ModuleCode</td>
+                <td>@pr.ModuleName</td>
+                <td>@pr.weeklyRemainingHrs / @String.Format("{0:0.00}", pr.weeklySelfStudy) </td>
+                <td>@pr.TotalRemainingHrs / @String.Format("{0:0.00}", pr.TotalSelfStudy)</td>
+                <td>@String.Format("{0:0.00}", pr.weeklyRemainingHrs)</td>
+                <td>@String.Format("{0:0.00}", pr.TotalRemainingHrs)</td>
+                <td>@pr.NumOfCredits</td>
+                <td>@pr.HoursPerWeek</td>
+                <td>@pr.SemesterStartDate</td>
+                <td>@pr.SemesterWeeks</td>
+                <td>
+                    <a class="btn btn-primary" href="/Study?ModuleCode=@pr.ModuleCode">Study</a>
+                    
+                </td>
+            </tr>
+       
+    }
+        </tbody>
+    </table>

@@ -1,0 +1,28 @@
+﻿@page
+@model ProgPoe3._1.Pages.StudyModel
+@{
+    Layout = "_Layout";
+    <link href="~/css/UserStudy.css" rel="stylesheet" />
+}
+<h2>Study</h2>
+<form class="row g-3" method="post">
+    <div class="col-md-6">
+        <label for="inputCode" class="form-label">Module Code</label>
+        <input type="text" class="form-control" id="inputCode" name="txtModCode" value="@Model.ModObj.ModuleCode" disabled readonly>
+    </div>
+    <div class="col-md-6">
+        <label for="txtModName" class="form-label">Module Name</label>
+        <input type="text" class="form-control" id="txtModName" name="txtModName" value="@Model.ModObj.ModuleName" disabled readonly>
+    </div>
+    <div class="col-md-4">
+        <label for="inputStudyDate" class="form-label">Study Date</label>
+        <input type="date" class="form-control" id="inputStudyDate" name="txtStudyDate">
+    </div>
+    <div class="col-md-4">
+        <label for="inputHours" class="form-label">Number of hrs studied</label>
+        <input type="text" class="form-control" id="inputHours" name="txtStudyHrs" >
+    </div>
+    <div class="col-md-2 outerDiv" >
+        <button type="submit" class="btn btn-primary" id="DoneBtn">Done</button>
+    </div>
+</form>
