@@ -1,0 +1,38 @@
+﻿@page
+@model ProgPoe3._1.Pages.CreateNewModuleModel
+@{
+    Layout = "_Layout";
+    <link href="~/css/UserStudy.css" rel="stylesheet" />
+}
+
+<h2>Create new module</h2>
+<form class="row g-3" method="post">
+    <div class="col-md-4">
+        <label for="inputCode" class="form-label">Module Code</label>
+        <input type="text" class="form-control" id="inputCode" name="txtModCode">
+    </div>
+    <div class="col-md-4">
+        <label for="txtModName" class="form-label">Module Name</label>
+        <input type="text" class="form-control" id="txtModName" name="txtModName">
+    </div>
+    <div class="col-md-4">
+        <label for="txtCredits" class="form-label">Number of credits</label>
+        <input type="text" class="form-control" id="txtCredits" name="txtNumOfCredits">
+    </div>
+    <div class="col-md-4">
+        <label for="inputClassHours" class="form-label">Class hours per week</label>
+        <input type="text" class="form-control" id="inputClassHours" name="txtClassHrs">
+    </div>
+    <div class="col-md-4">
+        <label for="inputSemStartDate" class="form-label">Semester Start date</label>
+        <input type="date" class="form-control" id="inputSemStartDate" name="txtSemStartDate">
+    </div>
+    <div class="col-md-4">
+        <label for="txtWeeks" class="form-label">Number of weeks</label>
+        <input type="text" class="form-control" id="txtWeeks" name="txtNumOfWeeks">
+    </div>
+
+    <div class="col-md-2 outerDiv">
+        <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+    </div>
+</form>

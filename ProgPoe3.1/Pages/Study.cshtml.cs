@@ -23,16 +23,17 @@ namespace ProgPoe3._1.Pages
             prList = objProject1.GetModules(StudentUser.Username);
         }
         public void OnPost() {
+            Module ModObj1 = new Module();
             string Modcode = Request.Query["ModuleCode"];
             DateTime Studydate = Convert.ToDateTime(Request.Form["txtStudyDate"]);
             double StudyHrs = double.Parse(Request.Form["txtStudyHrs"]);
-            ModObj.CreateLog(StudentUser.Username, Modcode, Studydate, StudyHrs,ModObj.ModuleName,
-                ModObj.trackWeek(
-                        dtStudydate.SelectedDate.Value,
-                        AddNewModulePage.ModuleList[cmbModuleDropDown.SelectedIndex].SemesterStartDate,
-                        AddNewModulePage.ModuleList[cmbModuleDropDown.SelectedIndex].SemesterStartDate.AddDays(7),
-                        cmbModuleDropDown.SelectedIndex));
 
+            ModObj1.getThatOneWeek(StudentUser.Username, Modcode);
+            string week =  ModObj1.trackThatOneWeek(Studydate, ModObj1.SemesterStartDate, ModObj1.SemesterStartDate.AddDays(7), ModObj1.SemesterWeeks);
+
+            ModObj1.CreateLog(StudentUser.Username, Modcode, Studydate, StudyHrs, ModObj1.ModuleName,week);
+
+            Response.Redirect("/Modules");
 
         }
     }

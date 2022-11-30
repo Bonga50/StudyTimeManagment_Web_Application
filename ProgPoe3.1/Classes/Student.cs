@@ -76,7 +76,7 @@ namespace ProgPoe3._1.Classes
             string unhased = Encoding.UTF8.GetString(Convert.FromBase64String(password));
             return unhased;
         }
-        //method that will keep track of what week the user is studying in
+      
         
     }
 }

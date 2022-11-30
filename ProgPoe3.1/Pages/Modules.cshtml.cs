@@ -15,6 +15,7 @@ namespace ProgPoe3._1.Pages
         public List<double> totalhrsDone = new List<double>();
         public List<double> weekhrs = new List<double>();
         public string week;
+        public string username = StudentUser.Username;
         public List<ViewModule> ModulesList = new List<ViewModule>();
         public void OnGet()
         {
@@ -44,6 +45,17 @@ namespace ProgPoe3._1.Pages
                     //Remaining study hrs for week
                     weekhrs = objProject.getStudyWeekhrs(StudentUser.Username, prList[i].ModuleCode, week);
 
+                    double tempweeklySelfStudy = ProjectModule.TheStudyClass.SelfStudy(
+                        prList[i].NumOfCredits,
+                        prList[i].SemesterStartDate,
+                        prList[i].SemesterWeeks,
+                        prList[i].HoursPerWeek);
+                    double tempTotalSelfStudy = ProjectModule.TheStudyClass.TotalhrsPreMod(
+                        prList[i].NumOfCredits,
+                        prList[i].SemesterStartDate,
+                        prList[i].SemesterWeeks,
+                        prList[i].HoursPerWeek);
+
                     ModulesList.Add(new ViewModule
                     {
                         //Module code
@@ -51,19 +63,17 @@ namespace ProgPoe3._1.Pages
                         //Project Name
                         ModuleName = prList[i].ModuleName,
                         //Weekly study hrs 
-                        weeklySelfStudy = ProjectModule.TheStudyClass.SelfStudy(
-                        prList[i].NumOfCredits,
-                        prList[i].SemesterStartDate,
-                        prList[i].SemesterWeeks,
-                        prList[i].HoursPerWeek),
+                        weeklySelfStudy = tempweeklySelfStudy,
                         //Total study hrs for the semester
-                        TotalSelfStudy = ProjectModule.TheStudyClass.TotalhrsPreMod(
-                        prList[i].NumOfCredits,
-                        prList[i].SemesterStartDate,
-                        prList[i].SemesterWeeks,
-                        prList[i].HoursPerWeek),
-                        TotalRemainingHrs = totalhrsDone[0],
-                        weeklyRemainingHrs = weekhrs[0],
+                        TotalSelfStudy = tempTotalSelfStudy,
+                        //total self study hrs remaining
+                        TotalRemainingHrs = tempTotalSelfStudy - totalhrsDone[0],
+                        //Total weekly hrs remaining
+                        weeklyRemainingHrs = tempweeklySelfStudy - weekhrs[0],
+                        //Weeklyhrs done 
+                        weeklyHrsDone = weekhrs[0],
+                        //totalhrs done
+                        TotalHrsDone = totalhrsDone[0],
                         //Number of credits 
                         NumOfCredits = prList[i].NumOfCredits,
                         //Class hrs per week

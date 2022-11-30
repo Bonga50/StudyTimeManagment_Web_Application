@@ -32,6 +32,31 @@ namespace ProgPoe3._1.Classes
             this.Username = UserID;
         }
 
+        //method used to add new module
+        public void AddNewModule(
+            string Username,
+            string ModuleCode,
+            string ModuleName,
+            int Credits,
+            int hrsPerWeek,
+            DateTime Semesterstart,
+            int Weeks
+
+            )
+        {
+            SqlConnection conn = Connections.GetConeection();
+            string text = $"insert into Module values('{ModuleCode}','{ModuleName}',{Credits},{hrsPerWeek},'{Semesterstart}','{Weeks}','{Username}');";
+            using (conn)
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(text, conn);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                conn.Close();
+            }
+
+        }
+
         public List<Module> GetModules(string userId)
         {
             SqlConnection conn = Connections.GetConeection();
@@ -187,6 +212,62 @@ namespace ProgPoe3._1.Classes
             return hrs;
         }
 
+        public void getThatOneWeek(string UserId, string ModCode)
+        {
+            SqlConnection conn = Connections.GetConeection();
+            string strSelect = $@"select Module.ModuleCode,Module.ModuleName,Module.SemesterStartDate,Module.SemesterWeeks from Module 
+                                where Username = '{UserId}' and ModuleCode ='{ModCode}';";
+
+            SqlCommand cmdSelect = new SqlCommand(strSelect, conn);
+            DataTable myTable = new DataTable();
+            DataRow myRow;
+            SqlDataAdapter myAdapter = new SqlDataAdapter(cmdSelect);
+
+            conn.Open();
+            myAdapter.Fill(myTable);
+            if (myTable.Rows.Count > 0)
+            {
+                for (int i = 0; i < myTable.Rows.Count; i++)
+                {
+                    myRow = myTable.Rows[i];
+                    ModuleCode = (string)myRow[0];
+                    ModuleName = (string)myRow[1];
+                    SemesterStartDate = (DateTime)myRow[2];
+                    SemesterWeeks = Convert.ToInt32(myRow[3]);
+
+
+                }
+            }
+
+            conn.Close();
+
+
+        }
+
+        public string trackThatOneWeek(DateTime studyDate, DateTime weekStartDate, DateTime weekEndDate, int NumberOfWeeks)
+        {
+            string week = "";
+            DateTime tempweekStartDate = weekStartDate;
+            DateTime tempweekEndDate = weekEndDate;
+
+            for (int i = 0; i < NumberOfWeeks; i++)
+            {
+                if (studyDate >= tempweekStartDate && studyDate <= tempweekEndDate)
+                {
+                    week = "week " + (i + 1);
+                    break;
+                }
+                else
+                {
+                    tempweekStartDate = tempweekEndDate;
+                    tempweekEndDate = tempweekStartDate.AddDays(7);
+                }
+
+            }
+            return week;
+        }
+
+
         public void CreateLog(
             string Username,
             string ModuleCode,
@@ -208,6 +289,7 @@ namespace ProgPoe3._1.Classes
             }
         }
 
+
     }
     /// <summary>
     /// The following class wll be used to view all the attributes in table form
@@ -225,5 +307,7 @@ namespace ProgPoe3._1.Classes
         public double TotalSelfStudy { get; set; }
         public double weeklyRemainingHrs { get; set; }
         public double TotalRemainingHrs { get; set; }
+        public double weeklyHrsDone { get; set; }
+        public double TotalHrsDone { get; set; }
     }
 }
