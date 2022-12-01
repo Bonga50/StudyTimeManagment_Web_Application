@@ -1,4 +1,40 @@
 ﻿@page
 @model ProgPoe3._1.Pages.UserStatsModel
 @{
+    Layout = "_Layout";
 }
+
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    var Weeks = [];
+    var WeeklyData = [];
+
+    @foreach (var item in Model.Stats)
+    {
+        @:Weeks.push('@item.Week');
+        @:WeeklyData.push(@item.weeklySelfStudyHrs);
+
+
+    }
+
+
+        new Chart(ctx,
+            {
+
+                type: 'bar',
+                data: {
+                    labels: Weeks,
+                    datasets: [{
+                        label: 'Hours',
+                        data: WeeklyData
+                    }]
+                }
+
+            });
+</script>

@@ -30,9 +30,11 @@ namespace ProgPoe3._1.Pages
 
             ModObj1.getThatOneWeek(StudentUser.Username, Modcode);
             string week =  ModObj1.trackThatOneWeek(Studydate, ModObj1.SemesterStartDate, ModObj1.SemesterStartDate.AddDays(7), ModObj1.SemesterWeeks);
-
-            ModObj1.CreateLog(StudentUser.Username, Modcode, Studydate, StudyHrs, ModObj1.ModuleName,week);
-
+            if (StudentUser.ValidDate)
+            {
+                ModObj1.CreateLog(StudentUser.Username, Modcode, Studydate, StudyHrs, ModObj1.ModuleName, week);
+                
+            }
             Response.Redirect("/Modules");
 
         }

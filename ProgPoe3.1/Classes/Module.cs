@@ -9,7 +9,7 @@ namespace ProgPoe3._1.Classes
 {
     public class Module
     {
-        
+
         public string ModuleCode { get; set; }
         public string ModuleName { get; set; }
         public int NumOfCredits { get; set; }
@@ -76,15 +76,15 @@ namespace ProgPoe3._1.Classes
                 SqlCommand cmd = new SqlCommand(text, conn);
                 var dataRead = cmd.ExecuteReader();
                 Proj = getList<Module>(dataRead);
-                
+
             }
             return Proj;
 
         }
 
-        public void GetMyModule(string userId,string ModCode) {
+        public void GetMyModule(string userId, string ModCode) {
             SqlConnection conn = Connections.GetConeection();
-            string strSelect = $"select Module.ModuleName, Module.ModuleCode,Module.Username from Module where ModuleCode = '{ModCode}' and Username ='{userId}';";
+            string strSelect = $"select Module.ModuleName, Module.ModuleCode,Module.Username,Module.SemesterWeeks from Module where ModuleCode = '{ModCode}' and Username ='{userId}';";
             SqlCommand cmdSelect = new SqlCommand(strSelect, conn);
             DataTable myTable = new DataTable();
             DataRow myRow;
@@ -100,6 +100,7 @@ namespace ProgPoe3._1.Classes
                     ModuleName = (string)myRow[0];
                     ModuleCode = (string)myRow[1];
                     Username = (string)myRow[2];
+                    SemesterWeeks = Convert.ToInt32(myRow[3]);
 
 
                 }
@@ -176,7 +177,7 @@ namespace ProgPoe3._1.Classes
                     }
 
                 }
-                
+
             }
             return hrs;
         }
@@ -189,7 +190,7 @@ namespace ProgPoe3._1.Classes
             hrs.Add(0);
             using (conn)
             {
-               
+
                 SqlCommand cmdSelect = new SqlCommand(text, conn);
                 conn.Open();
                 using (SqlDataReader reader = cmdSelect.ExecuteReader())
@@ -207,7 +208,7 @@ namespace ProgPoe3._1.Classes
                     }
 
                 }
-                
+
             }
             return hrs;
         }
@@ -234,8 +235,6 @@ namespace ProgPoe3._1.Classes
                     ModuleName = (string)myRow[1];
                     SemesterStartDate = (DateTime)myRow[2];
                     SemesterWeeks = Convert.ToInt32(myRow[3]);
-
-
                 }
             }
 
@@ -264,6 +263,16 @@ namespace ProgPoe3._1.Classes
                 }
 
             }
+            if (week == "")
+            {
+                StudentUser.ValidDate = false;
+
+            }
+            else
+            {
+                StudentUser.ValidDate = true;
+
+            }
             return week;
         }
 
@@ -288,7 +297,8 @@ namespace ProgPoe3._1.Classes
                 conn.Close();
             }
         }
-
+        
+        
 
     }
     /// <summary>
@@ -309,5 +319,28 @@ namespace ProgPoe3._1.Classes
         public double TotalRemainingHrs { get; set; }
         public double weeklyHrsDone { get; set; }
         public double TotalHrsDone { get; set; }
+    }
+    /// <summary>
+    /// The following class wll be used to view all the data in graph form
+    /// </summary>
+    /// 
+    public class newUserStats{
+        public string Username { get; set; }
+        public string Week { get; set; }
+        public string ModuleCode { get; set; }
+        public string ModuleName { get; set; }
+        public double weeklySelfStudyHrs { get; set; }
+        public double ReqSelfStudyHrs { get; set; }
+
+        public newUserStats() { }
+        public newUserStats(string username, string week, string moduleCode, string moduleName, double weeklySelfStudyHrs, double reqSelfStudyHrs)
+        {
+            Username = username;
+            Week = week;
+            ModuleCode = moduleCode;
+            ModuleName = moduleName;
+            this.weeklySelfStudyHrs = weeklySelfStudyHrs;
+            ReqSelfStudyHrs = reqSelfStudyHrs;
+        }
     }
 }
