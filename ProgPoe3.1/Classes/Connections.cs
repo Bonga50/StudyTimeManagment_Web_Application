@@ -12,12 +12,10 @@ namespace ProgPoe3._1.Classes
         public static SqlConnection GetConeection()
         {
 
-
+            //Used to get connection string for database
             string fileName = "StudentDB.mdf";
             string pathToFile = AppDomain.CurrentDomain.BaseDirectory + $"\\{fileName}";
             string filePath = Path.GetFullPath(pathToFile).Replace(@"\bin\Debug\netcoreapp3.1", @"\Data");
-            //string filePath = Path.GetFullPath(fileName);
-            //string strCon = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={filePath};Integrated Security=True";
             return new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={filePath};Integrated Security=True");
         }
     }

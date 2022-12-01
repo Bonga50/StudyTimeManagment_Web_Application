@@ -9,5 +9,8 @@ namespace ProgPoe3._1
     {
         public static string Username { get; set; }
         public static Boolean ValidDate { get; set; }
+        public static Boolean inValidUser { get; set; }
+        public static string tempModCode { get; set; }
+
     }
 }

@@ -56,7 +56,7 @@ namespace ProgPoe3._1.Classes
             }
 
         }
-
+        //Method used to get module data for modules that belong to certain users from the database, 
         public List<Module> GetModules(string userId)
         {
             SqlConnection conn = Connections.GetConeection();
@@ -81,10 +81,10 @@ namespace ProgPoe3._1.Classes
             return Proj;
 
         }
-
+        //Method used to get a sepecific module that belongs to a specific user
         public void GetMyModule(string userId, string ModCode) {
             SqlConnection conn = Connections.GetConeection();
-            string strSelect = $"select Module.ModuleName, Module.ModuleCode,Module.Username,Module.SemesterWeeks from Module where ModuleCode = '{ModCode}' and Username ='{userId}';";
+            string strSelect = $"select Module.ModuleName, Module.ModuleCode,Module.Username,Module.SemesterWeeks,Module.NumOfCredits,Module.SemesterStartDate,Module.HoursPerWeek from Module where ModuleCode = '{ModCode}' and Username ='{userId}';";
             SqlCommand cmdSelect = new SqlCommand(strSelect, conn);
             DataTable myTable = new DataTable();
             DataRow myRow;
@@ -101,7 +101,9 @@ namespace ProgPoe3._1.Classes
                     ModuleCode = (string)myRow[1];
                     Username = (string)myRow[2];
                     SemesterWeeks = Convert.ToInt32(myRow[3]);
-
+                    NumOfCredits = Convert.ToInt32(myRow[4]);
+                    SemesterStartDate = Convert.ToDateTime(myRow[5]);
+                    HoursPerWeek = Convert.ToInt32(myRow[6]);
 
                 }
             }
@@ -109,7 +111,7 @@ namespace ProgPoe3._1.Classes
             conn.Close();
 
         }
-
+        //Method that will be used to read from the database and assign the values in to a list 
         public List<T> getList<T>(IDataReader Reader)
         {
             List<T> lst = new List<T>();
@@ -127,7 +129,8 @@ namespace ProgPoe3._1.Classes
             return lst;
 
         }
-
+        //Method that will be used to get the week in which a certain date falls between, to get the week , the date that is being passed must fall between the semester start
+        //date and semester end date , else an empty value will be returned 
         public string trackWeek(DateTime studyDate, DateTime weekStartDate, DateTime weekEndDate, int index, List<Module> projectModules)
         {
             string week = "";
@@ -150,7 +153,7 @@ namespace ProgPoe3._1.Classes
             }
             return week;
         }
-
+        //Method for getting the total number of hrs that a user studied for a certain module for the whole semester
         public List<double> getTotalhrs(string UserID, string ModCode)
         {
             SqlConnection conn = Connections.GetConeection();
@@ -181,7 +184,7 @@ namespace ProgPoe3._1.Classes
             }
             return hrs;
         }
-
+        //Method for getting the total number of hrs that a user studied for a certain module for the a certain week
         public List<double> getStudyWeekhrs(string username, string ModCode, string weeks)
         {
             SqlConnection conn = Connections.GetConeection();
@@ -212,7 +215,7 @@ namespace ProgPoe3._1.Classes
             }
             return hrs;
         }
-
+        //Method used to get a sepecific moduless data that belongs to a specific user
         public void getThatOneWeek(string UserId, string ModCode)
         {
             SqlConnection conn = Connections.GetConeection();
@@ -242,7 +245,8 @@ namespace ProgPoe3._1.Classes
 
 
         }
-
+        //Method that will be used to get the week in which a certain date falls between, to get the week , the date that is being passed must fall between the semester start
+        //date and semester end date , else an empty value will be returned 
         public string trackThatOneWeek(DateTime studyDate, DateTime weekStartDate, DateTime weekEndDate, int NumberOfWeeks)
         {
             string week = "";
@@ -276,7 +280,7 @@ namespace ProgPoe3._1.Classes
             return week;
         }
 
-
+        //Will be called everytime a user studies for a module
         public void CreateLog(
             string Username,
             string ModuleCode,

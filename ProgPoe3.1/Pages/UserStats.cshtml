@@ -14,11 +14,13 @@
     const ctx = document.getElementById('myChart');
     var Weeks = [];
     var WeeklyData = [];
+    var WeeklyReqData = [];
 
     @foreach (var item in Model.Stats)
     {
         @:Weeks.push('@item.Week');
         @:WeeklyData.push(@item.weeklySelfStudyHrs);
+        @:WeeklyReqData.push(@item.ReqSelfStudyHrs);
 
 
     }
@@ -30,11 +32,11 @@
                 type: 'bar',
                 data: {
                     labels: Weeks,
-                    datasets: [{
-                        label: 'Hours',
-                        data: WeeklyData
-                    }]
-                }
+                    datasets: [
+                        { label: 'Hrs for @Model.Mod.ModuleCode', data: WeeklyData },
+                        { label: 'Required Hrs', data: WeeklyReqData },
+                    ],
+                },
 
             });
 </script>

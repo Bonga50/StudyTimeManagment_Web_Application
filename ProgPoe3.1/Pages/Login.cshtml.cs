@@ -4,9 +4,20 @@ namespace ProgPoe3._1.Pages
 {
     public class LoginModel : PageModel
     {
+        
+        public string errMsg;
         public void OnGet()
         {
+            if (StudentUser.inValidUser)
+            {
+                 errMsg = "Error incorrect username or password";
+            }
+            else
+            {
+                errMsg = "";
 
+            }
+    
         }
 
         public void OnPost()
@@ -20,12 +31,13 @@ namespace ProgPoe3._1.Pages
             string decryptPassword =  st.decryptPass(st.Password);
             if (st.Username == Username && Password.Equals(decryptPassword))
             {
-
+                
                 Response.Redirect("/Modules");
                 StudentUser.Username = Username;
             }
             else
             {
+                StudentUser.inValidUser = true;
                 Response.Redirect("/Login");
             }
         }
