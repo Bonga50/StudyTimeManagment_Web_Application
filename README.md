@@ -27,10 +27,11 @@ The app allows users to add multiple modules for the semester, input the number 
 ### Installation
 
 1. Clone this repository to your local machine or download the ZIP file and extract it.
+   
 
 ### Running the App
 
-1. Open the solution file (TimeManagementApp.sln) in Visual Studio.
+1. Open the solution file (ProgPoe3.1.sln) in Visual Studio.
 2. Build the solution and run the application.
 
 ## How to Use
