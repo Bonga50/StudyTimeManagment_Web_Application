@@ -1,6 +1,5 @@
 # Time Management Application
 
-![Time Management App](app_screenshot.png)
 
 ## Overview
 
@@ -50,4 +49,4 @@ Contributions to this project are welcome. If you find any issues or have sugges
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-*This project is developed by [Your Name]. For inquiries, please contact [Your Email Address].*
+*This project is developed by Siyabonga. For inquiries, please contact siyabonga4767@gmail.com.*
