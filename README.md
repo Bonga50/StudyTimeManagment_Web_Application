@@ -3,7 +3,7 @@
 
 ## Overview
 
-The Time Management Application is a standalone desktop application built using C# and Windows Presentation Foundation (WPF).  
+The Time Management Application is a standalone desktop application built using C# and ASP.NET COre.  
 It provides a comprehensive solution for managing academic semesters by helping users organize their study schedules efficiently.  
 The app allows users to add multiple modules for the semester, input the number of weeks, record study hours, and view real-time progress.
 
