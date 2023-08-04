@@ -44,9 +44,6 @@ The app allows users to add multiple modules for the semester, input the number 
 
 Contributions to this project are welcome. If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 *This project is developed by Siyabonga. For inquiries, please contact siyabonga4767@gmail.com.*
