@@ -1,0 +1,31 @@
+CREATE TABLE [dbo].[Module] (
+    [Id]                INT          IDENTITY (1, 1) NOT NULL,
+    [ModuleCode]        VARCHAR (50) NULL,
+    [ModuleName]        VARCHAR (50) NULL,
+    [NumOfCredits]      INT          NULL,
+    [HoursPerWeek]      INT          NULL,
+    [SemesterStartDate] DATE         NULL,
+    [SemesterWeeks]     INT          NULL,
+    [Username]          VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([Username]) REFERENCES [dbo].[Student] ([StudentId])
+);
+
+CREATE TABLE [dbo].[Student] (
+    [StudentId] VARCHAR (50) NOT NULL,
+    [Password]  VARCHAR (50) NULL,
+    [Name]      VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([StudentId] ASC)
+);
+
+CREATE TABLE [dbo].[StudyLogger] (
+    [ID]         INT          IDENTITY (1, 1) NOT NULL,
+    [Username]   VARCHAR (50) NOT NULL,
+    [Studydate]  DATE         NULL,
+    [Studyhrs]   DECIMAL (18) NULL,
+    [ModuleName] VARCHAR (50) NULL,
+    [ModuleCode] VARCHAR (50) NULL,
+    [Weeks]      VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    FOREIGN KEY ([Username]) REFERENCES [dbo].[Student] ([StudentId])
+);
