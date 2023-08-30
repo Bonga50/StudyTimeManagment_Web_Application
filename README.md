@@ -22,7 +22,7 @@ The app allows users to add multiple modules for the semester, input the number 
 
 - Windows operating system
 - Visual studio 2019 or better
-- .NET Framework
+- .NET Framework 6.0
 
 ### Installation
 
@@ -33,6 +33,7 @@ The app allows users to add multiple modules for the semester, input the number 
 
 1. Open the solution file (ProgPoe3.1.sln) in Visual Studio.
 2. Build the solution and run the application.
+3. Possible details to login with are, Username: stu1 Password: pass 
 
 ## How to Use
 
@@ -40,6 +41,7 @@ The app allows users to add multiple modules for the semester, input the number 
 2. Configure Semester: Enter the number of weeks in the semester and set the start date for the first week using the respective input fields.
 3. Record Study Hours: Record the number of hours spent studying on specific modules and dates using the "Record Study Hours" feature.
 4. View Progress: Observe real-time updates on the remaining self-study hours for each module in the current week.
+   
 
 ## Contribution
 
