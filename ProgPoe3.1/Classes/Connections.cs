@@ -15,7 +15,7 @@ namespace ProgPoe3._1.Classes
             //Used to get connection string for database
             string fileName = "StudentDB.mdf";
             string pathToFile = AppDomain.CurrentDomain.BaseDirectory + $"\\{fileName}";
-            string filePath = Path.GetFullPath(pathToFile).Replace(@"\bin\Debug\netcoreapp3.1", @"\Data");
+            string filePath = Path.GetFullPath(pathToFile).Replace(@"\bin\Debug\net6.0", @"\Data");
             return new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={filePath};Integrated Security=True");
         }
     }

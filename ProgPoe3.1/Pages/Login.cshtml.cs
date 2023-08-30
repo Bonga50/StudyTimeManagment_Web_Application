@@ -38,6 +38,10 @@ namespace ProgPoe3._1.Pages
                     Response.Redirect("/Modules");
                     StudentUser.Username = Username;
                 }
+                else {
+                    StudentUser.inValidUser = true;
+                    Response.Redirect("/Login");
+                }
                 
             }
             catch (System.Exception)
