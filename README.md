@@ -27,6 +27,8 @@ The app allows users to add multiple modules for the semester, input the number 
 ### Installation
 
 1. Clone this repository to your local machine or download the ZIP file and extract it.
+2. Make sure the data folder is also cloned or exits when u clone else it wont work this where the database is set.
+3. I have added a database script file if everything fails.
    
 
 ### Running the App
